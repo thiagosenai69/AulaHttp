@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +8,55 @@
     <title>Aula HTTP</title>
 </head>
 <body>
+    <button id="btnTheme" type="button" class="btn"></button>
     <h1>Aula HTTP</h1>
     <p>Hello World!</p>
 </body>
+<script>
+    let theme = null;
+
+    window.addEventListener("load", () => {
+        if(!localStorage.getItem("theme")) {
+            localStorage.setItem("theme", "light");
+        }
+
+        theme = localStorage.getItem("theme");
+
+        changeHtmlTheme();
+        changeBtnTheme();
+    });
+    
+    document.getElementById("btnTheme").addEventListener("click", () => {
+        changeTheme();
+    });
+
+    function changeTheme() {
+        theme = theme === "light" ? "dark" : "light"
+        localStorage.setItem("theme", theme);
+
+        changeHtmlTheme();
+        changeBtnTheme();
+    }
+    
+    function changeHtmlTheme() {
+        if(theme === "light") {
+            document.documentElement.setAttribute("data-bs-theme", "light")
+        } else {
+            document.documentElement.setAttribute("data-bs-theme", "dark");
+        }
+    }
+
+    function changeBtnTheme() {
+        if(theme === "light") {
+            document.getElementById("btnTheme").className = "btn btn-dark";
+            document.getElementById("btnTheme").innerHTML = "Claro";
+        } else {
+            document.getElementById("btnTheme").className = "btn btn-light";
+            document.getElementById("btnTheme").innerHTML = "Escuro";
+        }
+    }
+
+</script>
 <style>
     html {
         padding: 10px;
@@ -20,6 +66,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    #btnTheme {
+        font-weight: bold;
     }
 </style>
 </html>
