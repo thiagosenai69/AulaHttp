@@ -8,9 +8,16 @@
     <title>Aula HTTP</title>
 </head>
 <body>
-    <button id="btnTheme" type="button" class="btn"></button>
-    <h1>Aula HTTP</h1>
-    <p>Hello World!</p>
+    <header>
+        <button id="btnTheme" type="button" class="btn"></button>
+    </header>
+    <div class="container">
+        <h1>Aula HTTP</h1>
+        <p>Hello World!</p>
+    </div>
+    <footer>
+        Thiago © 2025
+    </footer>
 </body>
 <script>
     let theme = null;
@@ -62,10 +69,26 @@
         padding: 10px;
     }
 
-    body {
+    header {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .container {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    footer {
+        position: fixed;
+        display: flex;
+        font-weight: bold;
+        bottom: 5px;
+        left: 50%;
+        flex-direction: column;
+        align-items: center;
+        transform: translate(-50%);
     }
 
     #btnTheme {
